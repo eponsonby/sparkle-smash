@@ -2,12 +2,12 @@ class GamesController < ApplicationController
 
     def index
         @games = Game.all
-        render json: @games
+        render :json => @games, :include => {:user => {:only => :name}}, :except => [:created_at, :updated_at, :id, :user_id]
     end
 
     def show
-        @games = find_game
-        render json: @game
+        @game = find_game
+        render :json => @game, :include => {:user => {:only => :name}}, :except => [:created_at, :updated_at, :id, :user_id]
     end
 
     private
