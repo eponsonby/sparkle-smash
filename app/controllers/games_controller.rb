@@ -10,6 +10,16 @@ class GamesController < ApplicationController
         render :json => @game, :include => {:user => {:only => :name}}, :except => [:created_at, :updated_at, :id, :user_id]
     end
 
+    def create
+        @game = Game.new(game_params)
+        if @game.save
+            render :json => @game
+        else
+            render :json => { :errors => @game.errors }, status: 400
+        end
+    end
+
+
     private
 
     def game_params
