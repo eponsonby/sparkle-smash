@@ -23,5 +23,7 @@ test:
 
 production:
   <<: *default
+  username: sparkle-smash
+  password: <%= ENV['SPARKLE_SMASH_DATABASE_PASSWORD'] %>
   database: sparkle-smash_production
 
